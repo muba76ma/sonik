@@ -172,7 +172,7 @@ def dex(q):
         # and pass package-qualified relative paths.
         run([
             "dx", "--dex",
-            "--output=dex/classes.dex",
+            "--output=../dex/classes.dex",   # -> build/dex/classes.dex (exists from clean())
             *[str(p.relative_to(ROOT / "build/obj")) for p in classes],
         ], cwd=ROOT / "build/obj", quiet=q)
 
