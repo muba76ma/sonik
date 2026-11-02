@@ -167,12 +167,14 @@ def dex(q):
             *[str(p.relative_to(ROOT)) for p in classes],
         ], cwd=ROOT, quiet=q)
     else:
-        # dx is path-strict — must run from package root
+        # dx validates that the path matches the class's package.
+        # Run from build/obj (the package root for "com.sonik.browser")
+        # and pass package-qualified relative paths.
         run([
             "dx", "--dex",
-            "--output=../dex/classes.dex",
-            *[p.name for p in classes],
-        ], cwd=ROOT / "build/obj/com/sonik/browser", quiet=q)
+            "--output=dex/classes.dex",
+            *[str(p.relative_to(ROOT / "build/obj")) for p in classes],
+        ], cwd=ROOT / "build/obj", quiet=q)
 
 def package_apk(q):
     log("[5/5] packaging")
