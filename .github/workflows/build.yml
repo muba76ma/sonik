@@ -24,6 +24,9 @@ jobs:
         run: |
           sdkmanager "platforms;android-33" "build-tools;33.0.2"
 
+      - name: Add build-tools to PATH
+        run: echo "$ANDROID_HOME/build-tools/33.0.2" >> $GITHUB_PATH
+
       - name: Provide android.jar
         run: cp "$ANDROID_HOME/platforms/android-33/android.jar" .
 
