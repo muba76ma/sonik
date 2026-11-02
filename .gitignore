@@ -1,0 +1,5 @@
+build/
+android.jar
+*.keystore
+*.apk
+*.zip
